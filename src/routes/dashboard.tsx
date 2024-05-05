@@ -32,18 +32,18 @@ const Dashboard = () => {
   createMemo(() => {
     if (!res()) return;
     // running on this on the client causes hydration issues on StoreContext that is used on ancestors or neighbors components relative to this Dashboard component
-    // if (isServer) {
-    setStore("user", res()!);
-    setStore("loggedIn", true);
-    // }
+    if (isServer) {
+      setStore("user", res()!);
+      setStore("loggedIn", true);
+    }
   });
 
-  //   createEffect(() => {
-  //     if (!res()) return;
-  //
-  //     setStore("user", res()!);
-  //     setStore("loggedIn", true);
-  //   });
+  createEffect(() => {
+    if (!res()) return;
+
+    setStore("user", res()!);
+    setStore("loggedIn", true);
+  });
 
   return (
     <div>
@@ -71,7 +71,7 @@ const Dashboard = () => {
 export default () => {
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
       <Dashboard />
     </>
   );

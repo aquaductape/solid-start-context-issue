@@ -23,26 +23,17 @@ export default function Nav() {
         <li class={`border-b-2 ${active("/about")} mx-1.5 sm:mx-6`}>
           <a href="/about">About</a>
         </li>
-        <li class={`border-b-2 ${active("/dashboard")} mx-1.5 sm:mx-6`}>
-          <a href="/dashboard">Dashboard</a>
-        </li>
-        <Show when={store.loggedIn}>
-          <li class={`mx-1.5 sm:mx-6`}>
-            <div>
-              <span>{store.user?.username}</span> user is logged in{" "}
-            </div>
-          </li>
-        </Show>
+
         <Switch>
           <Match when={!store.loggedIn}>
             <li class={`border-b-2 ${active("/sign-in")} mx-1.5 sm:mx-6`}>
-              <a href="/sign-in">Sign In</a>
-            </li>
-            <li class={`border-b-2 ${active("/sign-up")} mx-1.5 sm:mx-6`}>
-              <a href="/sign-up">Sign Up</a>
+              <a href="/dashboard">Sign In</a>
             </li>
           </Match>
           <Match when={store.loggedIn}>
+            <li class={`border-b-2 ${active("/dashboard")} mx-1.5 sm:mx-6`}>
+              <a href="/dashboard">Dashboard</a>
+            </li>
             <li class={`mx-1.5 sm:mx-6`}>
               <a
                 href="/"
@@ -57,6 +48,11 @@ export default function Nav() {
           </Match>
         </Switch>
       </ul>
+      <Show when={store.loggedIn}>
+        <div class="py-3 px-[18px] sm:px-9  text-gray-200">
+          <span>{store.user?.username}</span> user is logged in{" "}
+        </div>
+      </Show>
     </nav>
   );
 }

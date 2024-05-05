@@ -11,7 +11,7 @@ export default function App() {
       root={(props) => (
         <>
           <StoreProvider>
-            {/* <Nav /> */}
+            <Nav />
             <Suspense>{props.children}</Suspense>
           </StoreProvider>
         </>
